@@ -1,0 +1,48 @@
+{{diagnostic}}
+<div class = "container">
+<h1> Child Form</h1>
+
+<form childForm = "ngForm">
+
+	<div class= "form-group">
+	<label for ="childId">Id</label>
+	<input type="number" class = "form-control" id="childId" required
+	
+	[(ngModel)] = "model.childId" name = "childid">
+	TODO: remove this: {{model.childId}}
+	</div>
+	
+	<div class= "form-group">
+	<label for ="firstName">First Name</label>
+	<input type="text" class = "form-control" id="firstName" required
+	
+	[(ngModel)] = "model.firstName" name = "firstName">
+	TODO: removethis: {{model.firstName}}
+	</div>
+	
+	<div class= "form-group">
+	<label for ="secondtName">Second Name</label>
+	<input type="text" class = "form-control" id="secondName" required
+	
+	[(ngModel)] = "model.secondName" name = "secondName">
+	TODO: removethis: {{model.secondtName}}
+	</div>
+	
+	<div class= "form-group">
+	<label for ="sex">Sex</label>
+	<input type="text" class = "form-control" id="sex" required
+	
+	[(ngModel)] = "model.sex" name = "sex">
+	TODO: removethis: {{model.sex}}
+	</div>
+	
+	<div class= "form-group">
+	<label for ="pesel">Pesel</label>
+	<input type="text" class = "form-control" id="pesel" required
+	
+	[(ngModel)] = "model.pesel" name = "pesel">
+	TODO: removethis: {{model.pesel}}
+	</div>
+<button (click) = "save()"> Add</button>
+</form>
+</div>

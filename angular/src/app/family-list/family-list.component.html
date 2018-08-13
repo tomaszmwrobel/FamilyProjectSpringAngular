@@ -1,0 +1,68 @@
+
+<h1>Family List</h1>
+<br>
+{{goTo}}
+<br>
+<h1>Search Child</h1>
+<form searchChildForm = "ngForm">
+
+      <div class="form-group">
+        <label for="childFirstName">FirstName</label>
+        <input type="text" class="form-control" id="childFirstName"
+        [(ngModel)] = "model.firstName" name = "firstName">
+	TODO: removethis: {{model.firstName}}
+      </div>
+      
+      <div class="form-group">
+        <label for="childSecondName">SecondName</label>
+        <input type="text" class="form-control" id="childSecondName"
+        
+	[(ngModel)] = "model.secondName" name = "secondName">
+	TODO: removethis: {{model.secondtName}}
+      </div>
+      
+      <div class="form-group">
+        <label for="childSex">Sex</label>
+        <input type="text" class="form-control" id="childSex"
+        
+	[(ngModel)] = "model.sex" name = "sex">
+	TODO: removethis: {{model.sex}}
+      </div>
+      
+      <div class="form-group">
+        <label for="childPesel">PESEL</label>
+        <input type="text" class="form-control" id="childPesel"
+        [(ngModel)] = "model.pesel" name = "pesel">
+	TODO: removethis: {{model.pesel}}
+      </div>
+
+		<button (click)="search()">Search</button>
+</form>
+
+<br><br>
+<table style = "width: 50%">
+<thead>
+<tr>
+	<th> First Name <th>
+	<th> Second Name <th>
+	<th> Birth Date <th>
+	<th> PESEL <th>
+</tr>
+</thead>
+
+	<tbody>
+		 <tr *ngFor="let family of families"  >
+        <td>{{ family.fatherFamily.firstName }}</td>
+        <td>{{ family.fatherFamily.secondName }}</td>
+        <td>{{ family.fatherFamily.birthDate }}</td>
+        <td>{{ family.fatherFamily.pesel }}</td>
+        <td> <button (click) = goTo(family.childFamily) type= "submit">Test </button></td>
+      </tr>
+    </tbody>
+
+</table>
+
+
+
+<br>Zwrotka<br>
+{{diagnostic}}

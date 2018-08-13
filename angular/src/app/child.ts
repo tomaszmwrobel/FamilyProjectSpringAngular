@@ -1,5 +1,5 @@
 export class Child {
-
+  private childId: number;
   private firstName: string;
   private secondName: string;
   private sex: string;
@@ -28,6 +28,11 @@ export class Child {
   public get getPesel(): string
   {
     return this.pesel;
+  }
+  public setChildId(id: number): number
+  {
+    this.childId = id;
+   return this.childId;
   }
 
 

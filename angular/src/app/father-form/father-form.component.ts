@@ -5,6 +5,9 @@ import { FatherService } from '../father.service';
 
 import { Location } from '@angular/common';
 
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-father-form',
   templateUrl: './father-form.component.html',
@@ -16,7 +19,8 @@ export class FatherFormComponent implements OnInit {
 
   constructor(
   private fatherService: FatherService,
-  private location: Location
+  private location: Location,
+  private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,4 +36,14 @@ save(): void {
    this.fatherService.addFather(this.model)
      .subscribe(() => this.goBack());
  }
+  btnClick(): void {
+    this.redirect();
+  }
+  redirect(): void{
+    this.fatherService.addFather2(this.model).subscribe(
+      model=> this.model= model,
+      error => console.log("Error: ", error),
+      () => this.router.navigate(['/addChild',this.model.fatherId])
+    );
+  }
 }

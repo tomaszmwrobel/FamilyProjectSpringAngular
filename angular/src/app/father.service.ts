@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 import { Father } from './father';
 
 const httpOptions = {
@@ -25,7 +27,9 @@ export class FatherService {
 
   private fatherUrl = 'http://localhost:8080/api/father';  // URL to web api
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
 
   addFather(father: Father): Observable<Father> {
@@ -40,6 +44,19 @@ headers2 = headers2.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, P
   let options = { headers: headerss };
     
    return this.http.post<Father>(this.fatherUrl, father, options).pipe(
+      tap((father: Father) => this.log(`added father`)),
+      catchError(this.handleError<Father>('addFather'))
+    );
+  } 
+  addFather2(father: Father): Observable<Father> {
+
+    let headerss = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin' : '*'
+      });
+
+  let options = { headers: headerss , observe: 'response' };
+   return this.http.post<Father>(this.fatherUrl, father, httpOptions).pipe(
       tap((father: Father) => this.log(`added father`)),
       catchError(this.handleError<Father>('addFather'))
     );

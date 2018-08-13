@@ -8,6 +8,8 @@ import {FamilyListComponent} from './family-list/family-list.component';
 const routes: Routes = [
 {path: 'addFamily' , component: FatherFormComponent},
   {path: 'addChild', component: ChildFormComponent},
+  
+  {path: 'addChild/:fatherId', component: ChildFormComponent},
 
   {path: 'readFamily', component: FamilyListComponent}
 ];

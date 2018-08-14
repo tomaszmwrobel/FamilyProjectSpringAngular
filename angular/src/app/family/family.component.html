@@ -1,0 +1,63 @@
+ <h1>Created Family</h1>
+<!--  {{modelFamily.familyId}}-->
+
+<br><br>
+
+
+
+<table>
+<thead>
+		<tr>
+			<th> First Name <th>
+			<th> Second Name <th>
+			<th> Birth Date <th>
+			<th> PESEL <th>
+			
+		</tr>
+		</thead>
+<tbody>
+		 <tr >
+        <td>{{families.fatherFamily.firstName}}</td>
+        <td> {{families.fatherFamily.secondName}} </td>
+        <td>{{families.fatherFamily.birthDate}}</td>
+        <td> {{families.fatherFamily.pesel}} </td>
+        
+        
+      </tr>
+
+</table>  
+<h2>Children</h2>
+
+<table>
+<thead>
+		<tr>
+			<th> First Name <th>
+			<th> Second Name <th>
+			<th> Sex <th>
+			<th> PESEL <th>
+			
+		</tr>
+		</thead>
+<tbody>
+		 <tr *ngFor="let child of families.childFamily"  >
+        <td>{{ child.firstName }}</td>
+        <td>{{ child.secondName }}</td>
+        <td>{{ child.sex }}</td>
+        <td> {{ child.pesel }}</td>
+        
+        
+      </tr>
+
+</table>
+
+
+
+
+
+<ul>
+  <li>
+    
+       {{families.familyId}}
+    
+  </li>
+</ul>

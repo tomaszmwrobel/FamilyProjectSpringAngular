@@ -6,6 +6,10 @@ import { ChildService } from '../child.service';
 import {Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
+import { Router } from '@angular/router';
+
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-child-form',
   templateUrl: './child-form.component.html',
@@ -14,41 +18,67 @@ import { ActivatedRoute } from '@angular/router';
 export class ChildFormComponent implements OnInit {
 @Input()
   model = new Child();
-childId: string;
+childId: number;
+  
+    private mdlSampleIsOpen : boolean;
+  
+private openModal(open : boolean) : void {
+    this.mdlSampleIsOpen = open;
+}
+  closeModal(close: boolean) : void {
+    this.mdlSampleIsOpen = close;
+  }
   
   constructor(
   private childService: ChildService,
     private location: Location,
     private route: ActivatedRoute,
+    private router: Router,
+    private modalService: NgbModal
     
     
   ) {
     this.childId = this.route.snapshot.params.fatherId; }
 
   ngOnInit() {
-  //this.childId = this.route.snapshot.paramMap.get('fatherId');
+ 
     this.route.params.subscribe(paramsId => {
       console.log(paramsId.fatherId);
-      //this.model.setChildId(this.childId);
+    
       
       this.model.setChildId(paramsId.fatherId);
-  
+      this.childId  = paramsId.fatherId;
+
     });
-    //console.log(this.childId);
-    
+
+   this.mdlSampleIsOpen = false;
+
+
   }
-  
+
   get diagnostic() {
     return JSON.stringify(this.model);
   }
   goBack(): void{
     this.location.back();
   }
-  
+
   save(): void {
-  //this.model.setChildId(Number(this.childId));
    this.childService.addChild(this.model)
-     .subscribe(() => this.goBack());
+     .subscribe(() => this.openModal(true));
  }
 
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+  addNext(): void {
+    this.model = new Child();
+      this.model.setChildId(this.childId);
+    this.closeModal(false);
+  }
+    Show(): void {
+  this.router.navigate(['/showFamily',this.childId]);
+
 }
+}
+

@@ -20,11 +20,25 @@ export class FamilyService {
   private familyUrl = 'http://localhost:8080/api/families';
   
   private familySearchUrl = 'http://localhost:8080/api/families/search';
+  
+  private famylyByIdUrl = 'http://localhost:8080/api/family/';
   constructor(private http: HttpClient) { }
 
    getFamilies (): Observable<Family[]> {
 
     return this.http.get<Family[]>(this.familyUrl)
+      .pipe(
+        tap(families => this.log('fetched families')),
+        catchError(this.handleError('getFamilies', []))
+      );
+  }
+  
+  
+  getFamilyById(id: number): Observable<Family[]>
+  {
+    const familyIdUrl = (this.famylyByIdUrl + id);
+    
+    return this.http.get<Family[]>(familyIdUrl)
       .pipe(
         tap(families => this.log('fetched families')),
         catchError(this.handleError('getFamilies', []))

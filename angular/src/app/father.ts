@@ -1,5 +1,7 @@
 export class Father {
   fatherId: number;
+  firstName: string;
+  
 contructor(
   fatherId: number,
   birthDate: Date,

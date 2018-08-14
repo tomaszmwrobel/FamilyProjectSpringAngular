@@ -43,8 +43,10 @@ public class FamilyController {
 	
 	@GetMapping("family/{id}")
 	public ResponseEntity<Family> getFamilyById(@PathVariable("id") Integer id) {
-		Family child = familyService.getFamilyById(id);
-		return new ResponseEntity<Family>(child, HttpStatus.OK);
+		Family family = familyService.getFamilyById(id);
+		family.setFatherFamily(fatherService.getFatherById(id));
+		family.setChildFamily(childService.getAllChildWithID(id));
+		return new ResponseEntity<Family>(family, HttpStatus.OK);
 	}
 	@PostMapping("/family")
 	public ResponseEntity<Void> addFamily(@RequestBody Family family, UriComponentsBuilder builder) {

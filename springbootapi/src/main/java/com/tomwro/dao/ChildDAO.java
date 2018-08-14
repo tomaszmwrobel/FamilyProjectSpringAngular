@@ -72,14 +72,6 @@ public class ChildDAO implements IChildDAO{
 		 StringBuilder whereClause = new StringBuilder(" WHERE ID = " + id + " AND ");
 		    String andOp = "";
 		    
-		   /*for (String colName : colSet) {                 
-		        whereClause.append(andOp);
-		        whereClause.append(" ");
-		        whereClause.append(colName);
-		        whereClause.append("=? ");
-		        andOp = " AND ";
-		    }*/
-		    
 		    
 		    for (Map.Entry<String, String> entry : params.entrySet()) {
 		        //System.out.println(entry.getKey() + ":" + entry.getValue());
@@ -92,7 +84,7 @@ public class ChildDAO implements IChildDAO{
 		    
 		    sql.append(whereClause);
 		    
-		    System.out.println(">>>>>>>>>>"+sql);
+		    //System.out.println(">>>>>>>>>>"+sql);
 		return sql.toString();
 	}
 

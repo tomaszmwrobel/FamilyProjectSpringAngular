@@ -22,6 +22,9 @@ childId: number;
   
     private mdlSampleIsOpen : boolean;
   
+  powers = ['Really Smart', 'Super Flexible',
+            'Super Hot', 'Weather Changer'];
+  
 private openModal(open : boolean) : void {
     this.mdlSampleIsOpen = open;
 }

@@ -4,41 +4,53 @@
     Search Family
   </h1>
 </div>
-<div class = "container">
-<h1>Search Child</h1>
-<form searchChildForm = "ngForm">
 
-      <div class="form-group">
+<div class = "container" >
+<h1>Child Info</h1>
+<form searchChildForm = "ngForm">
+<div class = "form-row">
+      <div class="form-group col-md-4">
         <label for="childFirstName">FirstName</label>
         <input type="text" class="form-control" id="childFirstName"
         [(ngModel)] = "model.firstName" name = "firstName">
-	TODO: removethis: {{model.firstName}}
+	<!--  TODO: removethis: {{model.firstName}} -->
       </div>
       
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label for="childSecondName">SecondName</label>
         <input type="text" class="form-control" id="childSecondName"
         
 	[(ngModel)] = "model.secondName" name = "secondName">
-	TODO: removethis: {{model.secondtName}}
+	<!--  TODO: removethis: {{model.secondtName}} -->
       </div>
+  </div>    
       
-      <div class="form-group">
+      
+   <div class = "form-row">   
+      <div class="form-group col-md-4">
         <label for="childSex">Sex</label>
-        <input type="text" class="form-control" id="childSex"
-        
-	[(ngModel)] = "model.sex" name = "sex">
-	TODO: removethis: {{model.sex}}
+         <select class="form-control" id="sex"
+                required
+                [(ngModel)]="model.sex" name="sex">
+           <option></option>     
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+	<!--  TODO: removethis: {{model.sex}}-->
+	
+	<!--  -->
       </div>
       
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label for="childPesel">PESEL</label>
         <input type="text" class="form-control" id="childPesel"
         [(ngModel)] = "model.pesel" name = "pesel">
-	TODO: removethis: {{model.pesel}}
+	<!--  TODO: removethis: {{model.pesel}}-->
       </div>
-
-		<button (click)="search()">Search</button>
+</div> 
+<div align="left">
+		<button class="btn btn-primary" (click)="search()">Search</button>
+</div>
 </form>
 </div>
 
@@ -53,44 +65,45 @@
   <br>
 </div>
 
-<div class = "table-container">
-  <table class = "table"  >
+<div class = "container col-md-10">
+<div class="table-responsive">
+  <table class= " table table-sm table-bordered"  >
     
-		<thead>
+		
 		<tr>
-			<th style="width: 20%"> First Name <th>
-			<th style="width: 20%"> Second Name <th>
-			<th style="width: 20%"> Birth Date <th>
-			<th style="width: 20%"> PESEL <th>
-			
-			<th style="width: 20%"> Detail <th>
+			<th> First Name </th>
+			<th> Second Name </th>
+			<th> Birth Date </th>
+			<th> PESEL </th>
+			<th> Detail </th>
 		</tr>
-		</thead>
-
-	<tbody>
+		
+		
+     <tbody>
 		 <tr *ngFor="let family of families"  >
-        <td scope="row">{{ family.fatherFamily.firstName }}</td>
-        <td scope="row">{{ family.fatherFamily.secondName }}</td>
-        <td scope="row" >{{ family.fatherFamily.birthDate }}</td>
-        <td scope="row"> {{ family.fatherFamily.pesel }}</td>
-        <td scope="row"> <button (click) = "showFamily(family, family.fatherFamily)" type= "submit">More</button></td>
+        <td >{{ family.fatherFamily.firstName }}</td>
+        <td >{{ family.fatherFamily.secondName }}</td>
+        <td  >{{ family.fatherFamily.birthDate }}</td>
+        <td > {{ family.fatherFamily.pesel }}</td>
+        <td > <button (click) = "showFamily(family, family.fatherFamily)" type= "submit" class="btn btn-primary">More</button></td>
         
-      </tr>
-    </tbody>
+      	</tr>
+  </tbody>  
 
 </table>
-
+</div>d
 </div>
 
-
+<!--  
 <br>Zwrotka<br>
-{{diagnostic}}
+{{diagnostic}}-->
 
-<div id="mdlSample" class="modal fade" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
-<div class="modal-dialog modal-lg">
+<div id="mdlSample" class="modal fade"  role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1 }">
+<!--  <div class="modal-dialog modal-lg">-->
+<div class="modal-dialog modal-dialog-centered " styel = "align-items: center" role ="document" > 
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">My Modal</h4>
+<h4 class="modal-title">Family</h4>
 </div>
 <div class="modal-body">
 <h2>Father</h2>
@@ -98,10 +111,10 @@
 <table>
 <thead>
 		<tr>
-			<th style="width: 20%"> First Name <th>
-			<th style="width: 20%"> Second Name <th>
-			<th style="width: 20%"> Birth Date <th>
-			<th style="width: 20%"> PESEL <th>
+			<th style="width: 25%"> First Name </th>
+			<th style="width: 25%"> Second Name </th>
+			<th style="width: 25%"> Birth Date </th>
+			<th style="width: 25%"> PESEL </th>
 			
 		</tr>
 		</thead>
@@ -121,19 +134,19 @@
 <table>
 <thead>
 		<tr>
-			<th style="width: 20%"> First Name <th>
-			<th style="width: 20%"> Second Name <th>
-			<th style="width: 20%"> Sex <th>
-			<th style="width: 20%"> PESEL <th>
+			<th style="width: 25%"> First Name </th>
+			<th style="width: 25%"> Second Name </th>
+			<th style="width: 10%"> Sex </th>
+			<th style="width: 25%"> PESEL </th>
 			
 		</tr>
 		</thead>
 <tbody>
 		 <tr *ngFor="let child of modelFamily.childFamily"  >
-        <td scope="row">{{ child.firstName }}</td>
-        <td scope="row">{{ child.secondName }}</td>
-        <td scope="row" >{{ child.sex }}</td>
-        <td scope="row"> {{ child.pesel }}</td>
+        <td>{{ child.firstName }}</td>
+        <td >{{ child.secondName }}</td>
+        <td  >{{ child.sex }}</td>
+        <td > {{ child.pesel }}</td>
         
         
       </tr>
@@ -144,7 +157,7 @@
 </div>
 <div class="modal-footer" align="right">
             <button type="button" id="btnOK" class="btn btn-success" (click)="closeModal(false)"> Ok</button>
-          <button type="button" id="btnClose" class="btn btn-danger" (click)="closeModal(false)"> Cancel</button>
+          
             </div>
 </div>
 </div>

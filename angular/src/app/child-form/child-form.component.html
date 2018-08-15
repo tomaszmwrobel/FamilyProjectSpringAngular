@@ -14,7 +14,7 @@
 	</div>
 	-->
 	
-	<div class= "form-group">
+	<div class= "form-group col-md-4">
 	<label for ="firstName">First Name</label>
 	<input type="text" class = "form-control" id="firstName" required
 	
@@ -22,7 +22,7 @@
 	<!-- TODO: removethis: {{model.firstName}} -->
 	</div>
 	
-	<div class= "form-group">
+	<div class= "form-group col-md-4">
 	<label for ="secondtName">Second Name</label>
 	<input type="text" class = "form-control" id="secondName" required
 	
@@ -30,7 +30,22 @@
 	<!--  TODO: removethis: {{model.secondtName}} -->
 	</div>
 	
-	<div class= "form-group">
+	<div class="form-group col-md-4">
+        <label for="sex">Sex</label>
+        <select class="form-control" id="sex"
+                required
+                [(ngModel)]="model.sex" name="sex"
+                #power="ngModel">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <!--  <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+          Power is required
+        </div>-->
+      </div>
+	
+	
+	<div class= "form-group col-md-4">
 	<label for ="sex">Sex</label>
 	<input type="text" class = "form-control" id="sex" required
 	
@@ -38,14 +53,17 @@
 	<!--  TODO: removethis: {{model.sex}} -->
 	</div>
 	
-	<div class= "form-group">
+	<div class= "form-group col-md-4">
 	<label for ="pesel">Pesel</label>
 	<input type="text" class = "form-control" id="pesel" required
 	
 	[(ngModel)] = "model.pesel" name = "pesel">
 	<!--   TODO: removethis: {{model.pesel}} -->
 	</div>
-<button (click) = "save()"> Add</button>
+	
+	<div align="left">
+<button class="btn btn-primary" (click) = "save()"> Add</button>
+</div>
 </form>
 
 </div>
@@ -53,15 +71,15 @@
 <!-- <button type="button" id="btnOpen" class="btn btn-primary" (click)="openModal(true)">Test</button> -->
 
 <div id="mdlSample" class="modal fade" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-dialog-centered " styel = "align-items: center">
 <div class="modal-content">
 <div class="modal-header">
-<h4 class="modal-title">My Modal</h4>
+<h4 class="modal-title">Add next child</h4>
 </div>
-<div class="modal-body">Text here!</div>
-<div class="modal-footer" align="right">
-            <button type="button" id="btnOK" class="btn btn-success" (click)="Show()">Show Family</button>
-          <button type="button" id="btnClose" class="btn btn-danger" (click)="addNext()">Add Next</button>
+<div class="modal-body">Do You want add next child to family?</div>
+<div class="modal-footer" align="center">
+           <div> <button type="button" id="btnOK" class="btn btn-primary" (click)="Show()">No, Show Family</button></div>
+          <button type="button" id="btnClose" class="btn btn-primary" (click)="addNext()">Yes,Add Next</button>
             </div>
 </div>
 </div>

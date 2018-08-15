@@ -13,15 +13,14 @@ import com.tomwro.entity.FamilyRowMapper;
 
 @Transactional
 @Repository
-public class FamilyDAO implements IFamilyDAO{
-
+public class FamilyDAO implements IFamilyDAO {
 
 	@Autowired
-    private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<Family> getAllFamily() {
-		
+
 		String sql = "SELECT ID FROM family";
 		RowMapper<Family> rowMapper = new FamilyRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
@@ -29,11 +28,11 @@ public class FamilyDAO implements IFamilyDAO{
 
 	@Override
 	public Family getFamilyById(int id) {
-		
+
 		String sql = "SELECT ID FROM family WHERE ID = ?";
 		RowMapper<Family> rowMapper = new FamilyRowMapper();
 		Family family = jdbcTemplate.queryForObject(sql, rowMapper, id);
-		
+
 		return family;
 	}
 
@@ -41,9 +40,7 @@ public class FamilyDAO implements IFamilyDAO{
 	public void addFamily(Family family) {
 		String sql = "INSERT INTO family VALUES (null)";
 		jdbcTemplate.update(sql);
-		
-		
+
 	}
-	
 
 }

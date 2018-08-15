@@ -1,56 +1,54 @@
 
-<div class = "container col-md6">
- <h1>Created Family</h1>
- <br>
- <h2>Father</h2>
-<table class= " table table-sm table-bordered">
-<thead>
-		<tr>
-			<th> First Name </th>
-			<th> Second Name </th>
-			<th> Birth Date </th>
-			<th> PESEL </th>
-			
-		</tr>
+<div class="container col-md6">
+	<h1>Created Family</h1>
+	<br>
+	<h2>Father</h2>
+	<table class=" table table-sm table-bordered">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Second Name</th>
+				<th>Birth Date</th>
+				<th>PESEL</th>
+
+			</tr>
 		</thead>
-<tbody>
-		 <tr >
-        <td>{{families.fatherFamily.firstName}}</td>
-        <td> {{families.fatherFamily.secondName}} </td>
-        <td>{{families.fatherFamily.birthDate}}</td>
-        <td> {{families.fatherFamily.pesel}} </td>
-        
-        
-      </tr>
-
-</table>  
+		<tbody>
+			<tr>
+				<td>{{families.fatherFamily.firstName}}</td>
+				<td>{{families.fatherFamily.secondName}}</td>
+				<td>{{families.fatherFamily.birthDate}}</td>
+				<td>{{families.fatherFamily.pesel}}</td>
 
 
-<h2>Children</h2>
+			</tr>
+	</table>
 
-<table class= " table table-sm table-bordered">
-<thead>
-		<tr>
-			<th> First Name </th>
-			<th> Second Name </th>
-			<th> Sex </th>
-			<th> PESEL </th>
-			
-			<th> BirthDate </th>
-			
-		</tr>
+
+	<h2>Children</h2>
+
+	<table class=" table table-sm table-bordered">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Second Name</th>
+				<th>Sex</th>
+				<th>PESEL</th>
+
+				<th>BirthDate</th>
+
+			</tr>
 		</thead>
-<tbody>
-		 <tr *ngFor="let child of families.childFamily"  >
-        <td>{{ child.firstName }}</td>
-        <td>{{ child.secondName }}</td>
-        <td>{{ child.sex }}</td>
-        <td> {{ child.pesel }}</td>
-        <td> {{ child.birthDate }}</td>
-        
-        
-      </tr>
+		<tbody>
+			<tr *ngFor="let child of families.childFamily">
+				<td>{{ child.firstName }}</td>
+				<td>{{ child.secondName }}</td>
+				<td>{{ child.sex }}</td>
+				<td>{{ child.pesel }}</td>
+				<td>{{ child.birthDate }}</td>
 
-</table>
+
+			</tr>
+	</table>
 
 </div>

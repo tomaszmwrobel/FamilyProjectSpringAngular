@@ -1,13 +1,13 @@
 <!-- {{diagnostic}} -->
-<div class = "container">
+<div class="container">
 
 
-<div  [hidden]= "submitted">
-<h1> Child Form</h1>
+	<div [hidden]="submitted">
+		<h1>Child Form</h1>
 
-<form childForm = "ngForm" (ngSubmit) = "onSubmit()" #fatherForm = "ngForm">
-
-	<!--  
+		<form childForm="ngForm" (ngSubmit)="onSubmit()" #childForm="ngForm">
+			<h4>Insert Child data:</h4>
+			<!--  
 	<div class= "form-group">
 	<label for ="childId">Id</label>
 	<input type="number" class = "form-control" id="childId" required
@@ -16,75 +16,75 @@
 	TODO: remove this: {{model.childId}}
 	</div>
 	-->
-	
-	<div class= "form-group col-md-4">
-	<label for ="firstName">First Name (*)</label>
-	<input type="text" class = "form-control" id="firstName" required
-	
-	[(ngModel)] = "model.firstName" name = "firstName">
-	<!-- TODO: removethis: {{model.firstName}} -->
-	</div>
-	
-	<div class= "form-group col-md-4">
-	<label for ="secondtName">Second Name (*)</label>
-	<input type="text" class = "form-control" id="secondName" required
-	
-	[(ngModel)] = "model.secondName" name = "secondName">
-	<!--  TODO: removethis: {{model.secondtName}} -->
-	</div>
-	
-	<div class="form-group col-md-4">
-        <label for="sex">Sex (*)</label>
-        <select class="form-control" id="sex"
-                required
-                [(ngModel)]="model.sex" name="sex">
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-        <!--  <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+
+			<div class="form-group col-md-4">
+				<label for="firstName">First Name (*)</label> <input type="text"
+					class="form-control" id="firstName" required
+					[(ngModel)]="model.firstName" name="firstName">
+				<!-- TODO: removethis: {{model.firstName}} -->
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="secondtName">Second Name (*)</label> <input type="text"
+					class="form-control" id="secondName" required
+					[(ngModel)]="model.secondName" name="secondName">
+				<!--  TODO: removethis: {{model.secondtName}} -->
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="sex">Sex (*)</label> <select class="form-control"
+					id="sex" required [(ngModel)]="model.sex" name="sex">
+					<option>Male</option>
+					<option>Female</option>
+				</select>
+				<!--  <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
           Power is required
         </div>-->
-      </div>
-	
-	
-	<div class="form-group col-md-4">
-        <label for="birthDate">Birth Date (*)</label>
-        
-        <input type="Date" class="form-control" id="birthDate"
-       required
-       [(ngModel)]="model.birthDate" name="birthDate">
-      <!--  TODO: remove this: {{model.birthDate}} -->
-      </div>
-	
-	<div class= "form-group col-md-4">
-	<label for ="pesel">Pesel (*)</label>
-	<input type="text" class = "form-control" id="pesel" required minlength="11"
-	
-	[(ngModel)] = "model.pesel" name = "pesel">
-	<!--   TODO: removethis: {{model.pesel}} -->
+			</div>
+
+
+			<div class="form-group col-md-4">
+				<label for="birthDate">Birth Date (*)</label> <input type="Date"
+					class="form-control" id="birthDate" required
+					[(ngModel)]="model.birthDate" name="birthDate">
+				<!--  TODO: remove this: {{model.birthDate}} -->
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="pesel">Pesel (*)</label> <input type="number"
+					class="form-control" id="pesel" required minlength="11"
+					[(ngModel)]="model.pesel" name="pesel">
+				<!--   TODO: removethis: {{model.pesel}} -->
+			</div>
+			(*) All fields are required
+			<div align="left">
+				<button class="btn btn-primary" (click)="save()"
+					[disabled]="!childForm.form.valid">Add Child to Family</button>
+			</div>
+		</form>
 	</div>
-	(*) All fields are required
-	<div align="left">
-<button class="btn btn-primary" (click) = "save()" [disabled]="!fatherForm.form.valid"> Add Child to Family</button>
-</div>
-</form>
-</div>
 </div>
 
 <!-- <button type="button" id="btnOpen" class="btn btn-primary" (click)="openModal(true)">Test</button> -->
 
-<div id="mdlSample" class="modal fade" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
-<div class="modal-dialog modal-dialog-centered " styel = "align-items: center">
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">Add next child</h4>
-</div>
-<div class="modal-body">Do You want add next child to family?</div>
-<div class="modal-footer" align="center">
-           <div> <button type="button" id="btnOK" class="btn btn-primary" (click)="Show()">No, Show Family</button></div>
-          <button type="button" id="btnClose" class="btn btn-primary" (click)="addNext()">Yes,Add Next</button>
-            </div>
-</div>
-</div>
+<div id="mdlSample" class="modal fade" role="dialog"
+	[ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+	<div class="modal-dialog modal-dialog-centered "
+		styel="align-items: center">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add next child</h4>
+			</div>
+			<div class="modal-body">Do You want add next child to family?</div>
+			<div class="modal-footer" align="center">
+				<div>
+					<button type="button" id="btnOK" class="btn btn-primary"
+						(click)="Show()">No, Show Family</button>
+				</div>
+				<button type="button" id="btnClose" class="btn btn-primary"
+					(click)="addNext()">Yes,Add Next</button>
+			</div>
+		</div>
+	</div>
 
 </div>

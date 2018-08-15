@@ -5,12 +5,9 @@ import {Father} from '../father';
 import {Child} from '../child';
 
 
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
-
-
-
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-family-list',
@@ -18,18 +15,19 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./family-list.component.css']
 })
 export class FamilyListComponent implements OnInit {
-  
+
   @Input()
   model = new Child();
   @Input()
   modelFamily = new Family();
-  
-    private mdlSampleIsOpen : boolean;
-  
-  
+
+    private mdlSampleIsOpen: boolean;
+
+
+  submitted = false;
+
   families: Family[] = [];
 
-  //courses$: Observable<Family[]>;
   constructor(private familyService: FamilyService, private http: HttpClient) { }
 
   ngOnInit() {
@@ -43,26 +41,29 @@ export class FamilyListComponent implements OnInit {
   }
 
 
+
+  onSubmit() { this.submitted = true; }
+
   get diagnostic() { return JSON.stringify(this.families); }
-  
+
   search(): void {
     this.familyService.SearchFamilies(this.model)
      .subscribe(families => this.families = families);
     this.model = new Child();
   }
-  
+
   showFamily(mFamily: Family, mFather: Father): void {
    this.modelFamily = mFamily;
    // mFather.
     this.modelFamily.fatherFamily = mFather;
     this.openModal(true);
   }
-  
-  
-private openModal(open : boolean) : void {
+
+
+private openModal(open: boolean): void {
     this.mdlSampleIsOpen = open;
 }
-  closeModal(close: boolean) : void {
+  closeModal(close: boolean): void {
     this.mdlSampleIsOpen = close;
   }
 }

@@ -17,6 +17,8 @@ export class FatherFormComponent implements OnInit {
 @Input()
   model = new Father();
 
+  submitted = false;
+ 
   constructor(
   private fatherService: FatherService,
   private location: Location,
@@ -26,9 +28,7 @@ export class FatherFormComponent implements OnInit {
   ngOnInit() {
     this.model = new Father();
   }
-  
-  submitted = false;
- 
+
   onSubmit() { this.submitted = true; }
 
    // TODO: Remove this when we're done
@@ -44,11 +44,11 @@ save(): void {
   btnClick(): void {
     this.redirect();
   }
-  redirect(): void{
+  redirect(): void {
     this.fatherService.addFather2(this.model).subscribe(
-      model=> this.model= model,
-      error => console.log("Error: ", error),
-      () => this.router.navigate(['/addChild',this.model.fatherId])
+      model => this.model = model,
+      error => console.log('Error: ', error),
+      () => this.router.navigate(['/addChild', this.model.fatherId])
     );
   }
 }

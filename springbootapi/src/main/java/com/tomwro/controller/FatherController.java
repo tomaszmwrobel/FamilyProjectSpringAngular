@@ -25,7 +25,7 @@ import com.tomwro.service.IFatherService;
 
 @Controller
 
-@CrossOrigin(origins = "*") //Local Host Access
+@CrossOrigin(origins = "*") // Local Host Access
 @RequestMapping("/api")
 public class FatherController {
 
@@ -33,61 +33,53 @@ public class FatherController {
 	private IFatherService fatherService;
 	@Autowired
 	private IFamilyService familyService;
-	
+
+	/*Get Fathe by ID*/
 	@GetMapping("father/{id}")
 	public ResponseEntity<Father> getFatherById(@PathVariable("id") Integer id) {
 		Father father = fatherService.getFatherById(id);
 		return new ResponseEntity<Father>(father, HttpStatus.OK);
 	}
+	
+	/* Create Family Add Father to Family*/
 	@PostMapping("/father")
 	public ResponseEntity<Father> addFather(@RequestBody Father father, UriComponentsBuilder builder) {
-		
-		
-		//last family ID
+
+		// Create Family
 		Family tmpFamily = new Family();
 		familyService.addFamily(tmpFamily);
-		List<Family> tmp= familyService.getAllFamily();
-		tmpFamily = tmp.get(tmp.size()-1);
+		
+		//Search last Family ID
+		List<Family> tmp = familyService.getAllFamily();
+		tmpFamily = tmp.get(tmp.size() - 1);
 		int index = tmpFamily.getFamilyId();
 		
+		//Set Father ID
 		father.setFatherId(index);
-		//System.out.println(">>>>>>>" + index);
-		
-        fatherService.addFather(father);
-       /* if (flag == false) {
-        	return new ResponseEntity<Father>(father,HttpStatus.CONFLICT);
-        }
-        
-//###################### 		Dopracować zwrotkę 
-       /* HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add("Access-Control-Allow-Origin", "*");
-        responseHeaders.add("Access-Control-Allow-Headers","origin, content-type, accept, authorization");
-        responseHeaders.add("Access-Control-Allow-Credentials", "true");
-        responseHeaders.add("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD");*/
-        
-        
-        return new ResponseEntity<Father>(father, HttpStatus.CREATED);
+
+		//Create Father
+		fatherService.addFather(father);
+
+		return new ResponseEntity<Father>(father, HttpStatus.CREATED);
 	}
-	
+
 	
 	@GetMapping("fathers")
 	public ResponseEntity<List<Father>> getAllFathers() {
 		List<Father> list = fatherService.getAllfathers();
 		return new ResponseEntity<List<Father>>(list, HttpStatus.OK);
 	}
-			
-		
-		@PutMapping("father")
-		public ResponseEntity<Father> updateFather(@RequestBody Father father) {
-			fatherService.updateFather(father);
-			return new ResponseEntity<Father>(father, HttpStatus.OK);
-		}
-		@DeleteMapping("father")
-		public ResponseEntity<Void> deleteFather(@RequestBody Father father) {
-			fatherService.deleteFather(father);
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}	
-			
-	
-	
+
+	@PutMapping("father")
+	public ResponseEntity<Father> updateFather(@RequestBody Father father) {
+		fatherService.updateFather(father);
+		return new ResponseEntity<Father>(father, HttpStatus.OK);
+	}
+
+	@DeleteMapping("father")
+	public ResponseEntity<Void> deleteFather(@RequestBody Father father) {
+		fatherService.deleteFather(father);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
 }

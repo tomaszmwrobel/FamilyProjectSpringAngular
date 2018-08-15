@@ -11,12 +11,11 @@ import com.tomwro.dao.IChildDAO;
 import com.tomwro.entity.Child;
 
 @Service
-public class ChildService implements IChildService{
-
+public class ChildService implements IChildService {
 
 	@Autowired
 	private IChildDAO childDAO;
-	
+
 	@Override
 	public List<Child> getAllChild() {
 
@@ -25,17 +24,15 @@ public class ChildService implements IChildService{
 
 	@Override
 	public List<Child> getAllChildWithID(int id) {
-		
+
 		return childDAO.getAllChildWithId(id);
 	}
-	
+
 	@Override
 	public List<Child> getAllChildWithIdWhere(int id, Map<String, String> map) {
-		
+
 		return childDAO.getAllChildWithIdWhere(id, map);
 	}
-
-	
 
 	@Override
 	public Child getChildById(int id) {
@@ -51,19 +48,15 @@ public class ChildService implements IChildService{
 
 	@Override
 	public void updateChild(Child child) {
-		
+
 		childDAO.updateChild(child);
-		
+
 	}
 
 	@Override
 	public void deleteChild(Child child) {
 		childDAO.updateChild(child);
-		
+
 	}
 
-	
-	
-
-	
 }

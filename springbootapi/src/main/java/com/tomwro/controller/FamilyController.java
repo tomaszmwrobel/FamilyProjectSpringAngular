@@ -28,8 +28,7 @@ import com.tomwro.service.IFatherService;
 
 @Controller
 
-
-@CrossOrigin(origins = "*") //Local Host Access
+@CrossOrigin(origins = "*") // Local Host Access
 @RequestMapping("/api")
 public class FamilyController {
 
@@ -39,8 +38,8 @@ public class FamilyController {
 	private IFatherService fatherService;
 	@Autowired
 	private IChildService childService;
-	
-	
+
+	/*Get Family By ID*/
 	@GetMapping("family/{id}")
 	public ResponseEntity<Family> getFamilyById(@PathVariable("id") Integer id) {
 		Family family = familyService.getFamilyById(id);
@@ -48,93 +47,79 @@ public class FamilyController {
 		family.setChildFamily(childService.getAllChildWithID(id));
 		return new ResponseEntity<Family>(family, HttpStatus.OK);
 	}
-	@PostMapping("/family")
-	public ResponseEntity<Void> addFamily(@RequestBody Family family, UriComponentsBuilder builder) {
-        boolean flag = familyService.addFamily(family);
-        if (flag == false) {
-        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-        
-//###################### 		Dopracować zwrotkę 
-        
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
-	}
-	
-	
+
+	/*Get All Families*/
 	@GetMapping("families")
 	public ResponseEntity<List<Family>> getAllFamily() {
 		List<Family> list = familyService.getAllFamily();
-		
-		for(Family f : list)
-		{
-			
 
+		for (Family f : list) {
 			f.setFatherFamily(fatherService.getFatherById(f.getFamilyId()));
 			f.setChildFamily(childService.getAllChildWithID(f.getFamilyId()));
-			
-				//System.out.println(">>>>" + f.getFamilyId());
-			//System.out.println("+++" + tmp.getFirstName());
+
+			// System.out.println(">>>>" + f.getFamilyId());
+			// System.out.println("+++" + tmp.getFirstName());
 		}
-		
-			
-	
+
 		return new ResponseEntity<List<Family>>(list, HttpStatus.OK);
 	}
-	
+
+	/*Read Family  with Parameters*/
 	@GetMapping("families/search")
 	public ResponseEntity<List<Family>> getAllFamilyWhere(
-			  @RequestParam(value="firstName", required=false) String firstName,
-		      @RequestParam(value="secondName", required=false) String secondName,
-		      @RequestParam(value="pesel", required=false) String pesel,
-		      @RequestParam(value="sex", required=false) String sex,
-		      @RequestParam(value="birthDate", required=false) String birthDate
-			) {
-		
+			@RequestParam(value = "firstName", required = false) String firstName,
+			@RequestParam(value = "secondName", required = false) String secondName,
+			@RequestParam(value = "pesel", required = false) String pesel,
+			@RequestParam(value = "sex", required = false) String sex,
+			@RequestParam(value = "birthDate", required = false) String birthDate) {
+
 		List<Family> list = familyService.getAllFamily();
 		List<Family> listSend = new ArrayList<>();
-		
-		//List<Father> listf = fatherService.getAllfathers();
-		
-		Map <String,String> map = new HashMap<>();
-		if(firstName != null)
+
+		//put parameters to map
+		Map<String, String> map = new HashMap<>();
+		if (firstName != null)
 			map.put("FirstName", firstName);
 
-		if(secondName != null)
+		if (secondName != null)
 			map.put("SecondName", secondName);
 
-		if(sex != null)
+		if (sex != null)
 			map.put("Sex", sex);
 
-		if(pesel != null)
+		if (pesel != null)
 			map.put("PESEL", pesel);
-		if(birthDate != null)
+		
+		if (birthDate != null)
 			map.put("BirthDate", birthDate);
-		
-		
 
-		for(Family f : list)
-		{
-			List<Child> tmpList = childService.getAllChildWithIdWhere(f.getFamilyId(),map);
-			
-			if(tmpList.size()>0)
-			{
-				//System.out.println(tmpList.size());
+		if (map.isEmpty())
+			return this.getAllFamily();
+
+		//Get Family with Child parameters
+		for (Family f : list) {
+			List<Child> tmpList = childService.getAllChildWithIdWhere(f.getFamilyId(), map);
+
+			if (tmpList.size() > 0) {
+				// System.out.println(tmpList.size());
 				f.setChildFamily(tmpList);
 				f.setFatherFamily(fatherService.getFatherById(f.getFamilyId()));
 				listSend.add(f);
 			}
-			
+
 		}
-		
-		
-		
-		//System.out.println(map);
-			
-	
+
+		// System.out.println(map);
+
 		return new ResponseEntity<List<Family>>(listSend, HttpStatus.OK);
 	}
 	
-	
-	
-	
+	@PostMapping("/family")
+	public ResponseEntity<Void> addFamily(@RequestBody Family family, UriComponentsBuilder builder) {
+
+		familyService.addFamily(family);
+
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+
 }

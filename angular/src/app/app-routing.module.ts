@@ -9,7 +9,7 @@ import {FamilyComponent} from './family/family.component';
 const routes: Routes = [
 {path: 'addFamily' , component: FatherFormComponent},
   {path: 'addChild', component: ChildFormComponent},
-  
+
   {path: 'addChild/:fatherId', component: ChildFormComponent},
 
   {path: 'showFamily', component: FamilyComponent},

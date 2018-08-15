@@ -5,7 +5,7 @@
 
 	<groupId>com.tomwro</groupId>
 	<artifactId>FamilyProject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<modules>
 		<module>springbootapi</module>
 		<module>angular</module>

@@ -19,36 +19,33 @@ export class ChildFormComponent implements OnInit {
 @Input()
   model = new Child();
 childId: number;
-  
-    private mdlSampleIsOpen : boolean;
-  
-  powers = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
-  
-private openModal(open : boolean) : void {
+
+    private mdlSampleIsOpen: boolean;
+
+
+  submitted = false;
+
+private openModal(open: boolean): void {
     this.mdlSampleIsOpen = open;
 }
-  closeModal(close: boolean) : void {
+  closeModal(close: boolean): void {
     this.mdlSampleIsOpen = close;
   }
-  
+
   constructor(
   private childService: ChildService,
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private modalService: NgbModal
-    
-    
+
   ) {
     this.childId = this.route.snapshot.params.fatherId; }
 
   ngOnInit() {
- 
     this.route.params.subscribe(paramsId => {
       console.log(paramsId.fatherId);
-    
-      
+
       this.model.setChildId(paramsId.fatherId);
       this.childId  = paramsId.fatherId;
 
@@ -59,14 +56,13 @@ private openModal(open : boolean) : void {
 
   }
 
-  
-  submitted = false;
- 
+
   onSubmit() { this.submitted = true; }
+  
   get diagnostic() {
     return JSON.stringify(this.model);
   }
-  goBack(): void{
+  goBack(): void {
     this.location.back();
   }
 
@@ -75,16 +71,14 @@ private openModal(open : boolean) : void {
      .subscribe(() => this.openModal(true));
  }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
-  }
   addNext(): void {
     this.model = new Child();
       this.model.setChildId(this.childId);
     this.closeModal(false);
+    this.submitted = false;
   }
     Show(): void {
-  this.router.navigate(['/showFamily',this.childId]);
+  this.router.navigate(['/showFamily', this.childId]);
 
 }
 }

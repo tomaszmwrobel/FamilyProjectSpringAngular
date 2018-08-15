@@ -21,16 +21,16 @@ export class ChildService {
   constructor(
   private http: HttpClient
   ) { }
-  
+
   addChild (child: Child): Observable<Child> {
-    
+
     return this.http.post<Child>(this.childUrl, child, httpOptions).pipe(
-    tap((child: Child) => this.log('added Child')),
+    tap(() => this.log('added Child')),
       catchError(this.handleError<Child>('addChild'))
     );
-    
+
   }
-  
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -45,9 +45,9 @@ export class ChildService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
  private log(message: string) {
-    //this.messageService.add(`HeroService: ${message}`);
-  }
-  
+   console.log(message);
+ }
 }
+
+

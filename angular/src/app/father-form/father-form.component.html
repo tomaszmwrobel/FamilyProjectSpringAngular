@@ -1,11 +1,11 @@
 <!--   {{diagnostic}}-->
-<div class="container" >
+<div class="container">
 
-<div  [hidden]= "submitted">
-    <h1>Father form</h1>
-    <form (ngSubmit) = "onSubmit()" #fatherForm = "ngForm">
-    
-    <!--  
+	<div [hidden]="submitted">
+		<h1>Father form</h1>
+		<form (ngSubmit)="onSubmit()" #fatherForm="ngForm">
+			<h4>Insert Father data:</h4>
+			<!--  
       <div class="form-group">
         <label for="fatherId">Id</label>
         
@@ -15,67 +15,53 @@
        TODO: remove this: {{model.fatherId}}
       </div>
 		 -->
-		 
-      
-      <div class="form-group col-md-4">
-        <label for="firstName">First Name (*)</label>
-        
-        <input type="text" class="form-control" id="firstName"
-       required
-       [(ngModel)]="model.firstName" name="firstName"
-       #firstName = "ngModel">
-       
-       <div [hidden]="firstName.valid || firstName.pristine"
-             class="alert alert-danger">
-          First Name is required
-        </div>
-       
-      <!--  TODO: remove this: {{model.firstName}} -->
-      </div>
-      
-      <div class="form-group col-md-4">
-        <label for="secondName">Second Name (*)</label>
-        
-        <input type="text" class="form-control" id="secondName"
-       required
-       [(ngModel)]="model.secondName" name="secondName">
-      <!--  TODO: remove this: {{model.secondName}} -->
-      </div>
-      
-      
-      <div class="form-group col-md-4">
-        <label for="birthDate">Birth Date (*)</label>
-        
-        <input type="Date" class="form-control" id="birthDate"
-       required
-       [(ngModel)]="model.birthDate" name="birthDate">
-      <!--  TODO: remove this: {{model.birthDate}} -->
-      </div>
-      
-      
-      <div class="form-group col-md-4">
-        <label for="PESEL">PESEL (*)</label>
-        
-        <input type="text" class="form-control" id="PESEL" required
-      
-       [(ngModel)]="model.pesel" name="PESEL">
-       
-       </div>
-      <!--  TODO: remove this: {{model.pesel}} -->
-      
-      
- 
-	<!-- <button (click)="save()">Send</button>-->
-	
-	(*) All fields are required
-		<div align="left">
-		<button type="button" class="btn btn-primary" (click)="btnClick()"[disabled]="!fatherForm.form.valid"> Add Father to Family</button>  
-		</div>
-		
-    
-		
-    </form>
-    
-   </div>
-     
+
+
+			<div class="form-group col-md-4">
+				<label for="firstName">First Name (*)</label> <input type="text"
+					class="form-control" id="firstName" required
+					[(ngModel)]="model.firstName" name="firstName">
+
+
+
+				<!--  TODO: remove this: {{model.firstName}} -->
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="secondName">Second Name (*)</label> <input type="text"
+					class="form-control" id="secondName" required
+					[(ngModel)]="model.secondName" name="secondName">
+				<!--  TODO: remove this: {{model.secondName}} -->
+			</div>
+
+
+			<div class="form-group col-md-4">
+				<label for="birthDate">Birth Date (*) </label> <input type="Date"
+					class="form-control" id="birthDate" required
+					[(ngModel)]="model.birthDate" name="birthDate">
+				<!--  TODO: remove this: {{model.birthDate}} -->
+			</div>
+
+
+			<div class="form-group col-md-4">
+				<label for="pesel">Pesel (*)(**)</label> <input type="text"
+					class="form-control" id="pesel" required minlength="11"
+					[(ngModel)]="model.pesel" name="pesel">
+			</div>
+
+
+			<!-- <button (click)="save()">Send</button>-->
+
+			(*) All fields are required <br> (**) 11 numbers reuired
+			<div align="left">
+				<button type="button" class="btn btn-primary" (click)="btnClick()"
+					[disabled]="!fatherForm.form.valid">Add Father to Family</button>
+			</div>
+
+
+
+		</form>
+
+	</div>
+
 </div>

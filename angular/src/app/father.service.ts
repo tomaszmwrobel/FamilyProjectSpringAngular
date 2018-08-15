@@ -14,7 +14,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const httpOptions2 = {
-  headers: {'Content-Type': 'application/json','Access-Control-Allow-Origin' : '*'}
+  headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin' : '*'}
 };
 
 
@@ -33,31 +33,28 @@ export class FatherService {
 
 
   addFather(father: Father): Observable<Father> {
-   /* let headers2: HttpHeaders = new HttpHeaders();
-headers2 = headers2.append('Content-Type', 'application/json');
-headers2 = headers2.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');*/
-    let headerss = new HttpHeaders({
+    const headerss = new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin' : '*'
       });
 
-  let options = { headers: headerss };
-    
+  const options = { headers: headerss };
+
    return this.http.post<Father>(this.fatherUrl, father, options).pipe(
-      tap((father: Father) => this.log(`added father`)),
+      tap(() => this.log(`added father`)),
       catchError(this.handleError<Father>('addFather'))
     );
-  } 
+  }
   addFather2(father: Father): Observable<Father> {
 
-    let headerss = new HttpHeaders({
+    const headerss = new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin' : '*'
       });
 
-  let options = { headers: headerss , observe: 'response' };
+  const options = { headers: headerss , observe: 'response' };
    return this.http.post<Father>(this.fatherUrl, father, httpOptions).pipe(
-      tap((father: Father) => this.log(`added father`)),
+      tap(() => this.log(`added father`)),
       catchError(this.handleError<Father>('addFather'))
     );
   }
@@ -76,8 +73,7 @@ headers2 = headers2.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, P
     };
   }
 
-  /** Log a HeroService message with the MessageService */
  private log(message: string) {
-    //this.messageService.add(`HeroService: ${message}`);
+    console.log(message);
   }
 }

@@ -18,10 +18,12 @@ const httpOptions = {
 export class FamilyService {
 
   private familyUrl = 'http://localhost:8080/api/families';
-  
+
   private familySearchUrl = 'http://localhost:8080/api/families/search';
-  
+
   private famylyByIdUrl = 'http://localhost:8080/api/family/';
+
+  datePram: string;
   constructor(private http: HttpClient) { }
 
    getFamilies (): Observable<Family[]> {
@@ -32,12 +34,12 @@ export class FamilyService {
         catchError(this.handleError('getFamilies', []))
       );
   }
-  
-  
+
+
   getFamilyById(id: number): Observable<Family[]>
   {
     const familyIdUrl = (this.famylyByIdUrl + id);
-    
+
     return this.http.get<Family[]>(familyIdUrl)
       .pipe(
         tap(families => this.log('fetched families')),
@@ -60,11 +62,18 @@ export class FamilyService {
      if ( child.getPesel != null) {
       params = params.append('pesel', child.getPesel);
       }
-    
+
     if ( child.getDate != null)
       {
-       
-      params = params.append('birthDate',child.getDate.toDateString);
+       let stringDate = child.getDate;
+      let stringDate2 = new Date(child.getDate);
+      console.log(stringDate2);
+
+      /*let ndate = (date.getFullYear + '-' + date.getMonth + '-' + date.getDay);
+      let date2 = (child.getDate.toDateString);
+      let date3 =( child.getDate.toLocaleDateString + '');*/
+
+      params = params.append('birthDate',stringDate.toString());
     }
     return this.http.get<Family[]>(this.familySearchUrl, {params: params})
       .pipe(

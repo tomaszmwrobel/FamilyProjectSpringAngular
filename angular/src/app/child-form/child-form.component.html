@@ -1,8 +1,11 @@
 <!-- {{diagnostic}} -->
 <div class = "container">
+
+
+<div  [hidden]= "submitted">
 <h1> Child Form</h1>
 
-<form childForm = "ngForm">
+<form childForm = "ngForm" (ngSubmit) = "onSubmit()" #fatherForm = "ngForm">
 
 	<!--  
 	<div class= "form-group">
@@ -15,7 +18,7 @@
 	-->
 	
 	<div class= "form-group col-md-4">
-	<label for ="firstName">First Name</label>
+	<label for ="firstName">First Name (*)</label>
 	<input type="text" class = "form-control" id="firstName" required
 	
 	[(ngModel)] = "model.firstName" name = "firstName">
@@ -23,7 +26,7 @@
 	</div>
 	
 	<div class= "form-group col-md-4">
-	<label for ="secondtName">Second Name</label>
+	<label for ="secondtName">Second Name (*)</label>
 	<input type="text" class = "form-control" id="secondName" required
 	
 	[(ngModel)] = "model.secondName" name = "secondName">
@@ -31,11 +34,10 @@
 	</div>
 	
 	<div class="form-group col-md-4">
-        <label for="sex">Sex</label>
+        <label for="sex">Sex (*)</label>
         <select class="form-control" id="sex"
                 required
-                [(ngModel)]="model.sex" name="sex"
-                #power="ngModel">
+                [(ngModel)]="model.sex" name="sex">
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -45,27 +47,28 @@
       </div>
 	
 	
-	<div class= "form-group col-md-4">
-	<label for ="sex">Sex</label>
-	<input type="text" class = "form-control" id="sex" required
+	<div class="form-group col-md-4">
+        <label for="birthDate">Birth Date (*)</label>
+        
+        <input type="Date" class="form-control" id="birthDate"
+       required
+       [(ngModel)]="model.birthDate" name="birthDate">
+      <!--  TODO: remove this: {{model.birthDate}} -->
+      </div>
 	
-	[(ngModel)] = "model.sex" name = "sex">
-	<!--  TODO: removethis: {{model.sex}} -->
-	</div>
-	
 	<div class= "form-group col-md-4">
-	<label for ="pesel">Pesel</label>
-	<input type="text" class = "form-control" id="pesel" required
+	<label for ="pesel">Pesel (*)</label>
+	<input type="text" class = "form-control" id="pesel" required minlength="11"
 	
 	[(ngModel)] = "model.pesel" name = "pesel">
 	<!--   TODO: removethis: {{model.pesel}} -->
 	</div>
-	
+	(*) All fields are required
 	<div align="left">
-<button class="btn btn-primary" (click) = "save()"> Add</button>
+<button class="btn btn-primary" (click) = "save()" [disabled]="!fatherForm.form.valid"> Add Child to Family</button>
 </div>
 </form>
-
+</div>
 </div>
 
 <!-- <button type="button" id="btnOpen" class="btn btn-primary" (click)="openModal(true)">Test</button> -->

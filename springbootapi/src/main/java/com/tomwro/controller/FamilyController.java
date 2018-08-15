@@ -67,15 +67,7 @@ public class FamilyController {
 		
 		for(Family f : list)
 		{
-			/*
-			if(fatherService.getFatherById(f.getFamilyId())!=null) 
-			{
-			f.setFatherFamily(fatherService.getFatherById(f.getFamilyId()));
-			}*/
-			//f.setChildFamily(childFamily);
-			///Do rozwiazania, problem pustego ojca lub dziecka
 			
-			//Father tmp = fatherService.getFatherById(f.getFamilyId());
 
 			f.setFatherFamily(fatherService.getFatherById(f.getFamilyId()));
 			f.setChildFamily(childService.getAllChildWithID(f.getFamilyId()));
@@ -94,7 +86,8 @@ public class FamilyController {
 			  @RequestParam(value="firstName", required=false) String firstName,
 		      @RequestParam(value="secondName", required=false) String secondName,
 		      @RequestParam(value="pesel", required=false) String pesel,
-		      @RequestParam(value="sex", required=false) String sex
+		      @RequestParam(value="sex", required=false) String sex,
+		      @RequestParam(value="birthDate", required=false) String birthDate
 			) {
 		
 		List<Family> list = familyService.getAllFamily();
@@ -114,21 +107,10 @@ public class FamilyController {
 
 		if(pesel != null)
 			map.put("PESEL", pesel);
+		if(birthDate != null)
+			map.put("BirthDate", birthDate);
 		
-		/*
-		for(Family f : list)
-		{
-			/*
-			if(fatherService.getFatherById(f.getFamilyId())!=null) 
-			{
-			f.setFatherFamily(fatherService.getFatherById(f.getFamilyId()));
-			}*/
-			//f.setChildFamily(childFamily);
-				///Do rozwiazania, problem pustego ojca lub dziecka
-			
-			//System.out.println("+++" + tmp.getFirstName());
-			
-		//}
+		
 
 		for(Family f : list)
 		{
@@ -145,17 +127,7 @@ public class FamilyController {
 		}
 		
 		
-		/*
-		list.clear();	
-		Family tmpFam = new Family(); 
-		tmpFam.setFamilyId(1);
-		tmpFam.setChildFamily(
-				childService.getAllChildWithIdWhere(1,map));*/
 		
-		//childService.getAllChildWithIdWhere(1,map);
-		//list.add(tmpFam);
-		
-		//System.out.println("----------------------" + firstName + " " + secondName);
 		//System.out.println(map);
 			
 	

@@ -4,6 +4,8 @@ export class Child {
   private secondName: string;
   private sex: string;
   private pesel: string;
+  birthDate: Date;
+  
   contructor(
   childId: number,
     firstName: string,
@@ -28,6 +30,10 @@ export class Child {
   public get getPesel(): string
   {
     return this.pesel;
+  }
+  public get getDate(): Date
+  {
+    return this.birthDate;
   }
   public setChildId(id: number): number
   {

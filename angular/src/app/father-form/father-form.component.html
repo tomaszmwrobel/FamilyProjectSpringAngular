@@ -18,7 +18,7 @@
 		 
       
       <div class="form-group col-md-4">
-        <label for="firstName">First Name</label>
+        <label for="firstName">First Name (*)</label>
         
         <input type="text" class="form-control" id="firstName"
        required
@@ -34,7 +34,7 @@
       </div>
       
       <div class="form-group col-md-4">
-        <label for="secondName">Second Name</label>
+        <label for="secondName">Second Name (*)</label>
         
         <input type="text" class="form-control" id="secondName"
        required
@@ -44,7 +44,7 @@
       
       
       <div class="form-group col-md-4">
-        <label for="birthDate">Birth Date</label>
+        <label for="birthDate">Birth Date (*)</label>
         
         <input type="Date" class="form-control" id="birthDate"
        required
@@ -54,19 +54,24 @@
       
       
       <div class="form-group col-md-4">
-        <label for="PESEL">PESEL</label>
+        <label for="PESEL">PESEL (*)</label>
         
-        <input type="text" class="form-control" id="PESEL"
-       required
+        <input type="text" class="form-control" id="PESEL" required
+      
        [(ngModel)]="model.pesel" name="PESEL">
+       
+       </div>
       <!--  TODO: remove this: {{model.pesel}} -->
-      </div>
+      
+      
  
-	<!-- <button (click)="save()">Wyslij</button>-->
+	<!-- <button (click)="save()">Send</button>-->
 	
-		<button type="button" class="btn btn-primary" (click)="btnClick()"[disabled]="!fatherForm.form.valid"> Add</button>  
+	(*) All fields are required
+		<div align="left">
+		<button type="button" class="btn btn-primary" (click)="btnClick()"[disabled]="!fatherForm.form.valid"> Add Father to Family</button>  
+		</div>
 		
-	<!--  <button type="submit" class="btn btn-success" [disabled]="!fatherForm.form.valid">Submit</button>-->
     
 		
     </form>

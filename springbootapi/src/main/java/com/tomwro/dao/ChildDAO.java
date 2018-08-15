@@ -22,7 +22,7 @@ public class ChildDAO implements IChildDAO{
 	
 	@Override
 	public List<Child> getAllChild() {
-		String sql = "SELECT ID, FirstName, SecondName, Sex, PESEL FROM child";
+		String sql = "SELECT ID, FirstName, SecondName, Sex, PESEL, BirthDate FROM child";
 		RowMapper<Child> rowMapper = new ChildRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
@@ -33,7 +33,7 @@ public class ChildDAO implements IChildDAO{
 
 		List<Child> tmp = new ArrayList<>();
 		
-		String sql = "SELECT ID, FirstName, SecondName, Sex, PESEL FROM child WHERE ID = ?";
+		String sql = "SELECT ID, FirstName, SecondName, Sex, PESEL, BirthDate FROM child WHERE ID = ?";
 		RowMapper<Child> rowMapper = new ChildRowMapper();
 		try {
 			tmp = this.jdbcTemplate.query(sql, rowMapper,id);
@@ -90,7 +90,7 @@ public class ChildDAO implements IChildDAO{
 
 	@Override
 	public Child getChildById(int id) {
-		String sql = "SELECT ID, FirstName,SecondName, Sex, PESEL FROM child WHERE ID = ?";
+		String sql = "SELECT ID, FirstName,SecondName, Sex, PESEL, BirthDate FROM child WHERE ID = ?";
 		RowMapper<Child> rowMapper = new ChildRowMapper();
 		Child child = jdbcTemplate.queryForObject(sql, rowMapper, id);
 		
@@ -100,15 +100,15 @@ public class ChildDAO implements IChildDAO{
 	@Override
 	public void addChild(Child child) {
 		
-		String sql = "INSERT INTO child (ID, FirstName, SecondName,Sex, PESEL) values (?, ?, ?, ? ,?)";
-		jdbcTemplate.update(sql, child.getChildId(), child.getFirstName(),child.getSecondName(),child.getSex(),child.getPESEL());
+		String sql = "INSERT INTO child (ID, FirstName, SecondName,Sex, PESEL, BirthDate) values (?, ?, ?, ? ,?, ?)";
+		jdbcTemplate.update(sql, child.getChildId(), child.getFirstName(),child.getSecondName(),child.getSex(),child.getPESEL(),child.getBirthDate());
 		
 	}
 
 	@Override
 	public void updateChild(Child child) {
-		String sql = "UPDATE child SET FirstName=?, SecondName=?,Sex=?,  PESEL=? WHERE ID=?";
-		jdbcTemplate.update(sql,child.getFirstName(), child.getSecondName(),child.getSex(),child.getPESEL(),child.getChildId());
+		String sql = "UPDATE child SET FirstName=?, SecondName=?,Sex=?, PESEL=?, BirthDate=? WHERE ID=?";
+		jdbcTemplate.update(sql,child.getFirstName(), child.getSecondName(),child.getSex(),child.getPESEL(),child.getChildId(), child.getBirthDate());
 		
 		
 	}

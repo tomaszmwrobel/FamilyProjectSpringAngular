@@ -1,6 +1,6 @@
 package com.tomwro.entity;
 
-
+import java.sql.Date;
 
 public class Child {
 	
@@ -9,7 +9,8 @@ public class Child {
 	private String secondName;
 	private String Sex;
 	private String PESEL;
-	
+
+	private Date birthDate;
 	
 	public int getChildId() {
 		return childId;
@@ -40,6 +41,12 @@ public class Child {
 	}
 	public void setPESEL(String pESEL) {
 		PESEL = pESEL;
+	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	
 	

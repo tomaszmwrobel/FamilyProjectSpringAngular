@@ -30,7 +30,7 @@
       <div class="form-group col-md-4">
         <label for="childSex">Sex</label>
          <select class="form-control" id="sex"
-                required
+          
                 [(ngModel)]="model.sex" name="sex">
            <option></option>     
           <option>Male</option>
@@ -47,6 +47,15 @@
         [(ngModel)] = "model.pesel" name = "pesel">
 	<!--  TODO: removethis: {{model.pesel}}-->
       </div>
+ 
+      <div class="form-group col-md-4">
+        <label for="childBirthDate">Birth Date</label>
+        <input type="Date" class="form-control" id="childBirthDate"
+        
+	[(ngModel)] = "model.birthDate" name = "birthDate">
+	<!--  TODO: removethis: {{model.secondtName}} -->
+      </div>
+      
 </div> 
 <div align="left">
 		<button class="btn btn-primary" (click)="search()">Search</button>
@@ -91,7 +100,7 @@
   </tbody>  
 
 </table>
-</div>d
+</div>
 </div>
 
 <!--  
@@ -100,7 +109,7 @@
 
 <div id="mdlSample" class="modal fade"  role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1 }">
 <!--  <div class="modal-dialog modal-lg">-->
-<div class="modal-dialog modal-dialog-centered " styel = "align-items: center" role ="document" > 
+<div class="modal-dialog modal-dialog-centered modal-lg " styel = "align-items: center" role ="document" > 
 <div class="modal-content">
 <div class="modal-header">
 <h4 class="modal-title">Family</h4>
@@ -108,7 +117,7 @@
 <div class="modal-body">
 <h2>Father</h2>
 
-<table>
+<table class ="table">
 <thead>
 		<tr>
 			<th style="width: 25%"> First Name </th>
@@ -131,13 +140,15 @@
 </table>  
 <h2>Children</h2>
 
-<table>
+<table class = "table table-sm">
 <thead>
 		<tr>
-			<th style="width: 25%"> First Name </th>
-			<th style="width: 25%"> Second Name </th>
-			<th style="width: 10%"> Sex </th>
-			<th style="width: 25%"> PESEL </th>
+			<th style="width: 25%">First Name</th>
+			<th style="width: 25%">Second Name</th>
+			<th style="width: 10%">Sex</th>
+			<th style="width: 20%">PESEL</th>
+			
+			<th style="width: 20%">Birth Date</th>
 			
 		</tr>
 		</thead>
@@ -148,6 +159,8 @@
         <td  >{{ child.sex }}</td>
         <td > {{ child.pesel }}</td>
         
+        <td > {{ child.birthDate }}</td>
+        
         
       </tr>
 
@@ -156,7 +169,7 @@
  
 </div>
 <div class="modal-footer" align="right">
-            <button type="button" id="btnOK" class="btn btn-success" (click)="closeModal(false)"> Ok</button>
+            <button type="button" id="btnOK" class="btn btn-primary" (click)="closeModal(false)"> Ok</button>
           
             </div>
 </div>

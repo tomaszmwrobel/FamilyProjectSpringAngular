@@ -60,6 +60,11 @@ export class FamilyService {
      if ( child.getPesel != null) {
       params = params.append('pesel', child.getPesel);
       }
+    
+    if ( child.getDate != null)
+      {
+      params = params.append('birthDate',child.getDate);
+    }
     return this.http.get<Family[]>(this.familySearchUrl, {params: params})
       .pipe(
         tap(families => this.log('fetched families')),

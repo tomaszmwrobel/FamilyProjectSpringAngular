@@ -63,7 +63,8 @@ export class FamilyService {
     
     if ( child.getDate != null)
       {
-      params = params.append('birthDate',child.getDate);
+       
+      params = params.append('birthDate',child.getDate.toDateString);
     }
     return this.http.get<Family[]>(this.familySearchUrl, {params: params})
       .pipe(

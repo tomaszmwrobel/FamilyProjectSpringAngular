@@ -32,6 +32,7 @@ export class FamilyComponent implements OnInit {
   ngOnInit() {
     this.modelFamily.fatherFamily = new Father();
     this.getFamily();
+    this.families = [];
   }
 
   

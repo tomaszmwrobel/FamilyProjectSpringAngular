@@ -59,6 +59,10 @@ private openModal(open : boolean) : void {
 
   }
 
+  
+  submitted = false;
+ 
+  onSubmit() { this.submitted = true; }
   get diagnostic() {
     return JSON.stringify(this.model);
   }

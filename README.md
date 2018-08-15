@@ -3,8 +3,9 @@ SpringBoot and Angular6
 
 
 # Baza Danych
-1. Skrypty tworzące baze danych znajdują się w katalogu /databaseScript
-przy tworzeniu korzystałem z bazy MySQL, w przypadku innej bazy należy zmienić sterownik jdbc
+1. Skrypty tworzące baze danych znajdują się w katalogu /databaseScript przy tworzeniu korzystałem z bazy MySQL. 
+	
+	(*) W przypadku innej bazy należy zmienić sterownik jdbc
 
 2. Konfiguracja
 	pliki konfiguracyjne :
